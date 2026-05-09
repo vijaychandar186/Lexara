@@ -4,6 +4,7 @@ import Google from 'next-auth/providers/google';
 
 export const authConfig = {
   providers: [GitHub, Google],
+  session: { strategy: 'jwt' },
   pages: {
     signIn: '/login'
   },
@@ -11,9 +12,15 @@ export const authConfig = {
     async signIn() {
       return true;
     },
-    async session({ session, user, token }) {
-      if (session.user) {
-        session.user.id = user?.id ?? token?.sub ?? '';
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token) {
+        session.user.id = token.id as string ?? token.sub ?? '';
       }
       return session;
     }
