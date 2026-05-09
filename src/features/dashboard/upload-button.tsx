@@ -293,7 +293,7 @@ const UploadDropzone = ({
               }`}
             >
               <div className="flex items-center justify-center h-full w-full">
-                <label
+                <div
                   className={`flex flex-col items-center justify-center w-full h-full rounded-lg ${
                     isQuotaExceeded
                       ? "cursor-not-allowed"
@@ -344,7 +344,7 @@ const UploadDropzone = ({
                     className="hidden"
                     disabled={isQuotaExceeded}
                   />
-                </label>
+                </div>
               </div>
             </div>
           )}
