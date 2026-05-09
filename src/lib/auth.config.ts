@@ -11,7 +11,10 @@ export const authConfig = {
     async signIn() {
       return true;
     },
-    async session({ session }) {
+    async session({ session, user, token }) {
+      if (session.user) {
+        session.user.id = user?.id ?? token?.sub ?? '';
+      }
       return session;
     }
   }

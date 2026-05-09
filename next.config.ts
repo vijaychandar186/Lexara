@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
     serverActions: {
       allowedOrigins: [
         'localhost:3000',
-        process.env.NEXTAUTH_URL || ''
+        process.env.AUTH_URL || process.env.NEXTAUTH_URL || ''
       ],
       bodySizeLimit: '16mb',
     }
